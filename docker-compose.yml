@@ -1,0 +1,15 @@
+version: '3.0'
+services: 
+  keycloak:
+    build: .
+    container_name: kaushik_keycloak
+    ports: 
+      - '9000:8080'
+    volumes: 
+      - ./realm-heroes.json:/tmp/realm-heroes.json
+      - ./standalone-ha.xml:/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml
+    environment: 
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: redhat
+      KEYCLOAK_IMPORT: /tmp/realm-heroes.json
+
